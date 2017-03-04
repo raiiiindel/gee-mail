@@ -1,0 +1,10 @@
+.messageRow{
+	background-color: pink;
+	margin: 10px;
+}
+.bodyDiv{
+display: none;
+}
+.test{
+	color: red;
+}

@@ -1,6 +1,37 @@
+#pageHeader{
+	font-size: 100px;
+	margin-bottom: -10px;
+	display: inline;
+
+}
+#counterDiv{
+	border-style: solid;
+	font-size: 25px;
+	text-align: center;
+	margin-right: 400px;
+	margin-left: 400px;
+	display: inline;
+
+}
 .messageRow{
 	background-color: pink;
-	margin: 10px;
+	margin-left: -10px;
+	margin-right: -10px;
+	padding: 10px;
+	border-style: solid;
+	float: ;
+}
+.senderDiv{
+	font-size: 40px;
+}
+.subjecDiv{
+	font-size: 20px;
+}
+.subjectDiv:hover{
+	font-size: 30px;
+}
+.dateDiv{
+	float: right;
 }
 .bodyDiv{
 display: none;

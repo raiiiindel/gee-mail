@@ -16,8 +16,21 @@
       	//creating h1 elem in header div
       	var headerElem = document.createElement('h1');
       	headerElem.id = "pageHeader";
-      	headerElem.innerHTML = "Welcome to you GeeMail";
+      	headerElem.innerHTML = "Welcome to your GeeMail!";
       	headerDiv.appendChild(headerElem);
+
+      	//creating counter
+      	var counterDiv = document.createElement('div');
+      	counterDiv.id = "counterDiv";
+      	var sum = 0;
+      	function emailCounter(arr){
+      		sum += arr.length;
+      	}
+      	emailCounter(geemails);
+      	counterDiv.innerHTML = " Inbox: " + sum;
+      	headerDiv.appendChild(counterDiv);
+
+
 
       	//appending header div to content container(body)
       	contentContainer.appendChild(headerDiv);
@@ -25,6 +38,7 @@
       	//populating data stored in window.geemails
       	function messageRows(arr){
       		for (var i=0; i<arr.length; i++){
+
       			
       			//creating message row
       			var messageRow = document.createElement('div');
@@ -51,8 +65,18 @@
       			bodyDiv.style.display = 'none';
       			subjectDiv.appendChild(bodyDiv);
 
+
+
+
+
       			contentContainer.appendChild(messageRow);
       		}
+      		var newMessage = document.createElement('div');
+      		newMessage.className = "messageRow";
+      		newMessage.innerHTML = getNewMessage;
+      		contentContainer.appendChild(newMessage);
+      		
+
 
       	}
       	messageRows(geemails);
@@ -75,6 +99,12 @@
       			console.log("else");
       		}
       	}
+
+      	//create new message
+      	
+
+
+      	
 
       	      	
       	

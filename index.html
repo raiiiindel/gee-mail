@@ -71,10 +71,50 @@
 
       			contentContainer.appendChild(messageRow);
       		}
-      		var newMessage = document.createElement('div');
-      		newMessage.className = "messageRow";
-      		newMessage.innerHTML = getNewMessage;
+
+      		
+
+
+      		function createNewMessage(){
+
+      			var newMess = getNewMessage();
+      			console.log(newMess);
+      			//creating new message row
+      			var newMessage = document.createElement('div');
+      			newMessage.className = "messageRow";
+      			//creating sender
+      			var senderDiv = document.createElement('div');
+      			senderDiv.className = 'senderDiv';
+      			senderDiv.innerHTML = newMess.sender;
+      			newMessage.appendChild(senderDiv);
+      			console.log(newMess.sender);
+      			//creating date
+      			var dateDiv = document.createElement('div');
+      			dateDiv.className = 'dateDiv';
+      			dateDiv.innerHTML = newMess.date;
+      			newMessage.appendChild(dateDiv);
+      			//creating subject
+      			var subjectDiv = document.createElement('div');
+      			subjectDiv.className = "subjectDiv";
+      			subjectDiv.innerHTML = newMess.subject;
+      			newMessage.appendChild(subjectDiv);
+      			//creating body
+      			var bodyDiv = document.createElement('div');
+      			bodyDiv.className = 'bodyDiv';
+      			bodyDiv.innerHTML = newMess.body;
+      			bodyDiv.style.display = 'none';
+      			subjectDiv.appendChild(bodyDiv);
+
+   
       		contentContainer.appendChild(newMessage);
+      		}
+
+      		createNewMessage();
+
+      		/*var newMessage = document.createElement('div');
+      		newMessage.className = "messageRow";
+      		newMessage.innerHTML = getNewMessage();
+      		contentContainer.appendChild(newMessage);*/
       		
 
 

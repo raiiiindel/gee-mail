@@ -1,41 +1,78 @@
+#main {
+	background: lightblue;
+	float: right;
+	margin: -10px;
+	padding-left: 0px;
+	
+}
 #pageHeader{
 	font-size: 100px;
 	margin-bottom: -10px;
 	display: inline;
-
 }
 #counterDiv{
-	border-style: solid;
+	
 	font-size: 25px;
-	text-align: center;
-	margin-right: 400px;
-	margin-left: 400px;
-	display: inline;
-
+	text-align: left;
+	float: right;
+	width: 95%;
 }
 .messageRow{
-	background-color: pink;
-	margin-left: -10px;
+	
+	margin-left: 10px;
 	margin-right: -10px;
-	padding: 10px;
-	border-style: solid;
-	float: ;
+	padding: 5px;
+	border-bottom: solid;
+	width: 84%;
+	float: right;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	
 }
-.senderDiv{
-	font-size: 40px;
+.messageRow:hover{
+
 }
-.subjecDiv{
-	font-size: 20px;
+
+.senderDiv {
+	width: 33%;
+	color: purple;
+	font-size: 35px;
+
+}
+
+.subjectDiv {
+	margin-top: -30px;
+	float: left
+	width: 20%;
+	padding-left: 30%;
+	padding-right: 30%;
+	text-align: left;
+	font-size: 25px;
 }
 .subjectDiv:hover{
-	font-size: 30px;
+	font-style: italic;
+	font-weight: bold;
+
 }
-.dateDiv{
-	float: right;
+.dateDiv {
+	float:right;
+	text-align: right;
+	margin-top: -25px;
+	margin-right: 10px;
+	font-size: 20px;
+	font-style: italic;
+	
+	
+	 
 }
-.bodyDiv{
-display: none;
+
+
+.bodyDiv {
+	display: none;
+	padding-left: -20%;
+	padding-right: 10%;
+	text-align: left;
+	
 }
-.test{
-	color: red;
+.messageRow:hover{
+	background-color: grey;
 }

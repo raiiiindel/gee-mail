@@ -3,39 +3,43 @@
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
-
       window.onload = function(){
       	var contentContainer = document.getElementById('main');
       	//Deleting "Build Me"
       	contentContainer.innerHTML = "";
-
       	//creating header div
       	var headerDiv = document.createElement('div');
       	headerDiv.id = 'headerDiv';
-
-      	//creating h1 elem in header div
+      	
+        //creating h1 elem in header div
       	var headerElem = document.createElement('h1');
       	headerElem.id = "pageHeader";
       	headerElem.innerHTML = "GeeMail!";
       	headerDiv.appendChild(headerElem);
 
-      	//creating counter
+      	
+        //creating counter
       	var counterDiv = document.createElement('div');
       	counterDiv.id = "counterDiv";
+        var inboxCount = main.children.length;
       	var sum = 0;
-      	function emailCounter(arr){
-      		sum += arr.length;
-      	}
-      	emailCounter(geemails);
-
-      	counterDiv.innerHTML = " Inbox: " + sum;
+        function countInbox(arr){
+          sum += arr.length;
+        }
+        countInbox(geemails);
+        
+        counterDiv.innerHTML = " Inbox: " + (sum + inboxCount);
+        
+      	setInterval(function(){
+      		inboxCount++;
+          
+          counterDiv.innerHTML = " Inbox: " + (sum + inboxCount);
+      	}, 10000);
+        
       	headerDiv.appendChild(counterDiv);
-
-
-
-      	//appending header div to content container(body)
+      	
+        //appending header div to content container(body)
       	contentContainer.appendChild(headerDiv);
-
 /*
       	function addNewMessage(){
       			var newMess = getNewMessage();
@@ -43,15 +47,11 @@
       		}
       		addNewMessage();
       		console.log(geemails);
-
       	setInterval(addNewMessage, 3000);*/
-
-
-
+      	
       	//populating data stored in window.geemails
       	function messageRows(arr){
       		for (var i=0; i<arr.length; i++){
-
       			
       			//creating message row
       			var messageRow = document.createElement('div');
@@ -77,24 +77,38 @@
       			bodyDiv.innerHTML = arr[i].body;
       			bodyDiv.style.display = 'none';
       			subjectDiv.appendChild(bodyDiv);
-
-
-
-
-
       			contentContainer.appendChild(messageRow);
+
       		}
 
-      	
+      		//adding toggle function to subject 
+      		var subToggle = document.getElementsByClassName('subjectDiv'); 
+      		console.log("subtoggle ", subToggle);   	
+      		for(var j=0; j<subToggle.length; j++){
+      		subToggle[j].addEventListener('click', showBodyInfo);
+      		}
+      		function showBodyInfo(){
+      			console.log("this ", this);
+      			var bodyNode = this.querySelectorAll('.bodyDiv')[0];
+      			console.log("body node", bodyNode);
+      			console.log(this.className);
+      			if(bodyNode.style.display === 'none'){
+      			bodyNode.style.display = 'block';
+      			}else{
+      			bodyNode.style.display = 'none';
+      			}
+      		}
 
-      		
-
-
-      		function createNewMessage(){
-
+          }
+      	messageRows(geemails);
+        
+           	
+      
+         //create new message 
+      		setInterval(function createNewMessage(){
       			var newMess = getNewMessage();
       			console.log(newMess);
-      			setInterval(getNewMessage, 3000);
+ 
       			//creating new message row
       			var newMessage = document.createElement('div');
       			newMessage.className = "messageRow";
@@ -121,57 +135,83 @@
       			bodyDiv.innerHTML = newMess.body;
       			bodyDiv.style.display = 'none';
       			subjectDiv.appendChild(bodyDiv);
-
    
       		contentContainer.appendChild(newMessage);
-      		}
-
-      		createNewMessage();
-      		
-
-
-      	}
-      	messageRows(geemails);
-
-      	//adding toggle function to subject 
-      	var subToggle = document.getElementsByClassName('subjectDiv'); 
-      	console.log("subtoggle ", subToggle);   	
-      	for(var i=0; i<subToggle.length; i++){
+      		//adding toggle function to subject 
+      		var subToggle = document.getElementsByClassName('subjectDiv'); 
+      		console.log("subtoggle ", subToggle);   	
+      		for(var i=0; i<subToggle.length; i++){
       		subToggle[i].addEventListener('click', showBodyInfo);
       		}
-      	function showBodyInfo(){
-      		console.log("this ", this);
-      		var bodyNode = this.lastChild;
-      		console.log("body node", bodyNode);
-      		console.log(this.className);
-      		if(bodyNode.style.display === 'none'){
+      		function showBodyInfo(){
+      			console.log("this ", this);
+      			var bodyNode = this.querySelectorAll('.bodyDiv')[0];
+      			console.log("body node", bodyNode);
+      			console.log(this.className);
+      			if(bodyNode.style.display === 'none'){
       			bodyNode.style.display = 'block';
-      		}else{
+      			}else{
       			bodyNode.style.display = 'none';
-      			console.log("else");
+      			}
       		}
-      	}
+            
+            
+          
+          	}, 10000);
 
-      	//create new message
+        //create Top menu
+		
+
+		var sideDiv = document.createElement('div');
+		sideDiv.className = "sideDiv";
+		// sideDiv.innerHTML = "Inbox Starred Important Sent Drafts ";
+		var compose = document.createElement('BUTTON');
+		compose.className = "compose";
+		compose.innerHTML = "COMPOSE";    
+		var sideText = document.createElement('div');
+		sideText.className = "sideText";
+		var sideInbox = document.createElement('div');
+		    sideInbox.className = "sideInbox";
+		    sideInbox.innerHTML = "Inbox(" + inboxCount +")";
+		var sideStarred = document.createElement('div');
+		    sideStarred.className = "sideStarred";
+		    sideStarred.innerHTML = "Starred";
+		var sideSent = document.createElement('div');
+		    sideSent.className = "sideSent";
+		    sideSent.innerHTML = "Sent";
+		var sideDraft = document.createElement('div');
+		    sideDraft.className = "sideDraft";
+		    sideDraft.innerHTML = "Drafts"; 
+		 var input = document.createElement('INPUT');
+		        input.type = ('radio');
+		        input.setAttribute += "friends";
+		    input.className = ("input");
+		    input.innerHTML = "friends";
+		side.appendChild(compose);
+		side.appendChild(sideText);    
+		sideText.appendChild(sideInbox);       
+		sideText.appendChild(sideStarred);    
+		sideText.appendChild(sideSent);    
+		sideText.appendChild(sideDraft);   
+		side.appendChild(sideDiv);
+		menu.appendChild(topNav);
+		menu.appendChild(social);
+		side.appendChild(input);     	 		
       	
-
-
       	
-
+        
+        
+      	
+      	
+      	
       	      	
       	
-
       	
-
       console.log(geemails);
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-
-
-
         
     };
-
     </script>
 	</head>
 	<body>
